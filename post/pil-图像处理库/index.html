@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PIL 图像处理库 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="cuohoh" /><meta name="description" content="open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PIL 图像处理库" />
+<meta property="og:description" content="open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/" />
+<meta property="article:published_time" content="2018-10-18T23:50:33+08:00" />
+<meta property="article:modified_time" content="2018-10-18T23:50:33+08:00" />
+<meta itemprop="name" content="PIL 图像处理库">
+<meta itemprop="description" content="open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);">
+
+
+<meta itemprop="datePublished" content="2018-10-18T23:50:33&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-18T23:50:33&#43;08:00" />
+<meta itemprop="wordCount" content="631">
+
+
+
+<meta itemprop="keywords" content="python,PIL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PIL 图像处理库"/>
+<meta name="twitter:description" content="open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PIL 图像处理库</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-18 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%B8%B8%E7%94%A8%E5%BA%93/"> 常用库 </a>
+            </div>
+          <span class="more-meta"> 约 631 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#open-filename-mode">open(filename,mode)</a></li>
+<li><a href="#save-filename-format-保存指定格式的图像">save(filename,format)(保存指定格式的图像)</a></li>
+<li><a href="#thumbnail-size-resample-创建缩略图">thumbnail(size,resample)(创建缩略图)</a></li>
+<li><a href="#生成随机图片">生成随机图片：</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h2 id="open-filename-mode">open(filename,mode)</h2>
+
+<p>Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);format表示图像的格式,常见的包括JPEG,PNG等格式;mode表示图像的模式，定义了像素类型还有图像深度等，常见的有RGB,HSV等。一般来说&rsquo;L&rsquo;(luminance)表示灰度图像,&lsquo;RGB&rsquo;表示真彩图像,&lsquo;CMYK&rsquo;表示预先压缩的图像。一旦你得到了打开的Image对象之后，就可以使用其众多的方法对图像进行处理了，比如使用<code>im.show()</code>可以展示上面得到的图像。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;&gt;&gt; from PIL import Image
+&gt;&gt;&gt; Image.open(&#34;dog.jpg&#34;,&#34;r&#34;)
+&lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=296x299 at 0x7F62BDB5B0F0
+&gt;
+&gt;&gt;&gt; im = Image.open(&#34;dog.jpg&#34;,&#34;r&#34;)
+&gt;&gt;&gt; print(im.size,im.format,im.mode)
+(296, 299) JPEG RGB</pre></td></tr></table>
+</div>
+</div>
+<h2 id="save-filename-format-保存指定格式的图像">save(filename,format)(保存指定格式的图像)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;&gt;&gt; im.save(&#34;dog.png&#34;,&#39;png&#39;)</pre></td></tr></table>
+</div>
+</div>
+<h2 id="thumbnail-size-resample-创建缩略图">thumbnail(size,resample)(创建缩略图)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;&gt;&gt; im.thumbnail((50,50),resample=Image.BICUBIC)
+&gt;&gt;&gt; im.show()</pre></td></tr></table>
+</div>
+</div>
+<p>​
+上面的代码可以创建一个指定大小(size)的缩略图,需要注意的是，thumbnail方法是原地操作，返回值是None。</p>
+
+<p>第一个参数是指定的缩略图的大小，第二个是采样的，有<code>Image.BICUBIC</code>，<code>PIL.Image.LANCZOS</code>，<code>PIL.Image.BILINEAR</code>，<code>PIL.Image.NEAREST</code>这四种采样方法。默认是<code>Image.BICUBIC</code>。</p>
+
+<h2 id="生成随机图片">生成随机图片：</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;&gt; import random
+&gt;&gt; from PIL import Image
+&gt;&gt; r =lambda: random.randint(128, 255)
+&gt;&gt; img = Image.new(mode=&#39;RGB&#39;,size=(800,800),color=(r(), r(), r()))
+&gt;&gt; img.save(the destination path) ＃或是调用 img.show()直接显示图片</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">cuohoh</span>
+  </p>
+  
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/pil/">PIL</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Flask参数解析、请求钩子</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+            <span class="next-text nav-default">os模块常用方法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

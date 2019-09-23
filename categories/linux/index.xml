@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on 飘流的河</title>
+    <link>http://cuoh2.github.io/categories/linux/</link>
+    <description>Recent content in linux on 飘流的河</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Sun, 19 Aug 2018 17:40:19 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuoh2.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux命令</title>
+      <link>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 19 Aug 2018 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid>
+      <description>对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎</description>
+    </item>
+    
+  </channel>
+</rss>

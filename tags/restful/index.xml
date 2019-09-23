@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>restful on 飘流的河</title>
+    <link>http://cuoh2.github.io/tags/restful/</link>
+    <description>Recent content in restful on 飘流的河</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Mon, 03 Dec 2018 17:40:19 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuoh2.github.io/tags/restful/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>模型对象的序列化</title>
+      <link>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+      <pubDate>Mon, 03 Dec 2018 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+      <description>1.在视图函数中，读取出模型之后，需要把他的属性读出来，转换成一个字典，最好的方式是能直接jsonfiy(user)，但是jsonfiy并不</description>
+    </item>
+    
+  </channel>
+</rss>

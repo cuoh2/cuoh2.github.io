@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>os模块常用方法 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="cuohoh" /><meta name="description" content="os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="os模块常用方法" />
+<meta property="og:description" content="os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" />
+<meta property="article:published_time" content="2018-09-21T20:45:19+08:00" />
+<meta property="article:modified_time" content="2018-09-21T20:45:19+08:00" />
+<meta itemprop="name" content="os模块常用方法">
+<meta itemprop="description" content="os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在">
+
+
+<meta itemprop="datePublished" content="2018-09-21T20:45:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-21T20:45:19&#43;08:00" />
+<meta itemprop="wordCount" content="519">
+
+
+
+<meta itemprop="keywords" content="python,os," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="os模块常用方法"/>
+<meta name="twitter:description" content="os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">os模块常用方法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%B8%B8%E7%94%A8%E5%BA%93/"> 常用库 </a>
+            </div>
+          <span class="more-meta"> 约 519 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p><code>os.path.join()</code>：连接两个或更多的路径名组件</p>
+
+<ul>
+<li>如果各组件名首字母不包含’/’，则函数会自动加上；</li>
+<li>如果有一个组件是一个绝对路径，则在它之前的所有组件均会被舍弃；</li>
+
+<li><p>如果最后一个组件为空，则生成的路径以一个’/’分隔符结尾。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Demo1
+import os
+
+Path1 = &#39;home&#39;
+Path2 = &#39;develop&#39;
+Path3 = &#39;code&#39;
+
+Path10 = Path1 + Path2 + Path3
+Path20 = os.path.join(Path1,Path2,Path3)
+print (&#39;Path10 = &#39;,Path10)
+print (&#39;Path20 = &#39;,Path20)
+
+输出
+
+Path10 = homedevelopcode
+Path20 = home\develop\code</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Demo2
+
+import os
+
+Path1 = &#39;/home&#39;
+Path2 = &#39;develop&#39;
+Path3 = &#39;code&#39;
+
+Path10 = Path1 + Path2 + Path3
+Path20 = os.path.join(Path1,Path2,Path3)
+print (&#39;Path10 = &#39;,Path10)
+print (&#39;Path20 = &#39;,Path20)
+输出
+
+Path10 = /homedevelopcode
+Path20 = /home\develop\code</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Demo3
+import os
+
+Path1 = &#39;home&#39;
+Path2 = &#39;/develop&#39;
+Path3 = &#39;code&#39;
+
+Path10 = Path1 + Path2 + Path3
+Path20 = os.path.join(Path1,Path2,Path3)
+print (&#39;Path10 = &#39;,Path10)
+print (&#39;Path20 = &#39;,Path20)
+
+输出
+
+Path10 = home/developcode
+Path20 = /develop\code
+
+--------------------------------------------------------------
+
+Demo4
+import os
+
+Path1 = &#39;home&#39;
+Path2 = &#39;develop&#39;
+Path3 = &#39;/code&#39;
+
+Path10 = Path1 + Path2 + Path3
+Path20 = os.path.join(Path1,Path2,Path3)
+print (&#39;Path10 = &#39;,Path10)
+print (&#39;Path20 = &#39;,Path20 )
+
+输出
+
+Path10 = homedevelop/code
+Path20 = /code</pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<p><code>os.path.splitext(图片.jpg)</code>: 把文件名分成文件名称和扩展名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import uuid
+  uuid.uuid4().hex  ：可以不接收参数生成随机文件名</pre></td></tr></table>
+</div>
+</div>
+<p><code>app.root_path</code> 相当于 <code>os.path.abspath(os.path.dirname(__file__)</code></p>
+
+<p><code>os.getcwd()</code> ：获取python解释器执行脚本时候的所在地方</p>
+
+<p><code>__file__</code> ：当前文件路径</p>
+
+<p><code>os.path.dirname(file)</code> : 某个文件所在的目录路径</p>
+
+<p><code>os.path.abspath(path)</code> : 将path从相对路径转成绝对路径</p>
+
+<p><code>os.pardir</code> :上一层目录&rsquo;..&rsquo;</p>
+
+<p><code>os.listdir()</code> ：返回指定目录下的所有文件和目录名</p>
+
+<p><code>os.path.abspath(os.path.dirname(__file__))</code> ：获取当前路径</p>
+
+<p><code>os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))</code> :获取上一级目录</p>
+
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">cuohoh</span>
+  </p>
+  
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/os/">os</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">PIL 图像处理库</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/random%E5%BA%93/">
+            <span class="next-text nav-default">python random库</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

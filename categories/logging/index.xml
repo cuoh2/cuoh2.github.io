@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>logging on 飘流的河</title>
+    <link>http://cuoh2.github.io/categories/logging/</link>
+    <description>Recent content in logging on 飘流的河</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Sun, 19 Aug 2018 17:40:19 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuoh2.github.io/categories/logging/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>logging介绍</title>
+      <link>http://cuoh2.github.io/post/10/</link>
+      <pubDate>Sun, 19 Aug 2018 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/10/</guid>
+      <description>logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，</description>
+    </item>
+    
+    <item>
+      <title>logging介绍</title>
+      <link>http://cuoh2.github.io/post/11/</link>
+      <pubDate>Sun, 19 Aug 2018 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/11/</guid>
+      <description>logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，</description>
+    </item>
+    
+  </channel>
+</rss>

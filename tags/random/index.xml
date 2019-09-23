@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>random on 飘流的河</title>
+    <link>http://cuoh2.github.io/tags/random/</link>
+    <description>Recent content in random on 飘流的河</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Wed, 19 Sep 2018 21:35:12 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuoh2.github.io/tags/random/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python random库</title>
+      <link>http://cuoh2.github.io/post/random%E5%BA%93/</link>
+      <pubDate>Wed, 19 Sep 2018 21:35:12 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/random%E5%BA%93/</guid>
+      <description>Python 的 random 库实现了各种分布的伪随机数生成。 整数 random.randrange(start, stop=None, step=1)：从 range(start, stop, step) 返回一个随机选择的元素。stop 与 step 可以缺省，stop 缺省时返回 range(start) 中的</description>
+    </item>
+    
+  </channel>
+</rss>

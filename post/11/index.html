@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>logging介绍 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content=".zhujianjun" /><meta name="description" content="logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/11/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="logging介绍" />
+<meta property="og:description" content="logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/11/" />
+<meta property="article:published_time" content="2018-08-19T17:40:19+08:00" />
+<meta property="article:modified_time" content="2018-08-19T17:40:19+08:00" />
+<meta itemprop="name" content="logging介绍">
+<meta itemprop="description" content="logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，">
+
+
+<meta itemprop="datePublished" content="2018-08-19T17:40:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-19T17:40:19&#43;08:00" />
+<meta itemprop="wordCount" content="1855">
+
+
+
+<meta itemprop="keywords" content="python,logging," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="logging介绍"/>
+<meta name="twitter:description" content="logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等； 相比print，"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">logging介绍</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-19 </span>
+        <div class="post-category">
+            <a href="/categories/logging/"> logging </a>
+            </div>
+          <span class="more-meta"> 约 1855 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#消息等级">消息等级</a></li>
+<li><a href="#基本例子">基本例子</a></li>
+<li><a href="#输出到文件-终端">输出到文件、终端</a></li>
+<li><a href="#加载配置">加载配置</a></li>
+<li><a href="#回滚-过期删除">回滚、过期删除</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等；
+相比print，具备如下优点：</p>
+
+<ul>
+<li><p>可以通过设置不同的日志等级,在release版本中只输出重要信息，而不必显示大量的调试信息；</p></li>
+
+<li><p>print将所有信息都输出到标准输出中，严重影响开发者从标准输出中查看其它数据；logging则可以由开发者决定将信息输出到什么地方，以及怎么输出；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import logging
+logging.basicConfig(level = logging.INFO,format = &#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;)
+logger = logging.getLogger(__name__)
+
+logger.info(&#34;Start print log&#34;)
+logger.debug(&#34;Do something&#34;)
+logger.warning(&#34;Something maybe fail.&#34;)
+logger.info(&#34;Finish&#34;)
+
+
+# 运行时，控制台输出，
+2016-10-09 19:11:19,434 - __main__ - INFO - Start print log
+2016-10-09 19:11:19,434 - __main__ - WARNING - Something maybe fail.
+2016-10-09 19:11:19,434 - __main__ - INFO - Finish</pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h2 id="消息等级">消息等级</h2>
+
+<p>可以设置不同的日志等级，用于控制日志的输出。
+日志等级：使用范围
+FATAL：致命错误
+CRITICAL：特别糟糕的事情，如内存耗尽、磁盘空间为空，一般很少使用
+ERROR：发生错误时，如IO操作失败或者连接问题
+WARNING：发生很重要的事件，但是并不是错误时，如用户登录密码错误
+INFO：处理请求或者状态变化等日常事务
+DEBUG：调试过程中使用DEBUG等级，如算法中每个循环的中间状态</p>
+
+<p>logging中可以选择很多消息级别，如debug、info、warning、error以及critical。通过赋予logger或者handler不同的级别，开发者就可以只输出错误信息到特定的记录文件，或者在调试时只记录调试信息。</p>
+
+<h2 id="基本例子">基本例子</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">logging.basicConfig(level = logging.DEBUG,format = &#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;)
+
+控制台输出，可以发现，输出了debug的信息。
+2016-10-09 19:12:08,289 - __main__ - INFO - Start print log
+2016-10-09 19:12:08,289 - __main__ - DEBUG - Do something
+2016-10-09 19:12:08,289 - __main__ - WARNING - Something maybe fail.
+2016-10-09 19:12:08,289 - __main__ - INFO - Finish</pre></td></tr></table>
+</div>
+</div>
+<h2 id="输出到文件-终端">输出到文件、终端</h2>
+
+<p>logger中添加StreamHandler，可以将日志输出到屏幕上，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(level = logging.INFO)
+handler = logging.FileHandler(&#34;log.txt&#34;)
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter(&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;)
+handler.setFormatter(formatter)
+
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+
+logger.addHandler(handler)
+logger.addHandler(console)
+
+logger.info(&#34;Start print log&#34;)
+logger.debug(&#34;Do something&#34;)
+logger.warning(&#34;Something maybe fail.&#34;)
+logger.info(&#34;Finish&#34;)
+
+
+# 可以在log.txt文件和控制台中看到，
+2016-10-09 19:20:46,553 - __main__ - INFO - Start print log
+2016-10-09 19:20:46,553 - __main__ - WARNING - Something maybe fail.
+2016-10-09 19:20:46,553 - __main__ - INFO - Finish</pre></td></tr></table>
+</div>
+</div>
+<p>handler名称：位置；作用
+StreamHandler；日志输出到流，可以是sys.stderr，sys.stdout或者文件
+FileHandler：logging.FileHandler；日志输出到文件
+BaseRotatingHandler：logging.handlers.BaseRotatingHandler；基本的日志回滚方式
+RotatingHandler：logging.handlers.RotatingHandler；日志回滚方式，支持日志文件最大数量和日志文件回滚
+TimeRotatingHandler：logging.handlers.TimeRotatingHandler；日志回滚方式，在一定时间区域内回滚日志文件
+SocketHandler：logging.handlers.SocketHandler；远程输出日志到TCP/IP sockets
+DatagramHandler：logging.handlers.DatagramHandler；远程输出日志到UDP sockets
+SMTPHandler：logging.handlers.SMTPHandler；远程输出日志到邮件地址
+SysLogHandler：logging.handlers.SysLogHandler；日志输出到syslog
+NTEventLogHandler：logging.handlers.NTEventLogHandler；远程输出日志到Windows NT/2000/XP的事件日志
+MemoryHandler：logging.handlers.MemoryHandler；日志输出到内存中的指定buffer
+HTTPHandler：logging.handlers.HTTPHandler；通过”GET”或者”POST”远程输出到HTTP服务器</p>
+
+<h2 id="加载配置">加载配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import json
+import logging.config
+import os
+
+def setup_logging(default_path = &#34;logging.json&#34;,default_level = logging.INFO,env_key = &#34;LOG_CFG&#34;):
+    path = default_path
+    value = os.getenv(env_key,None)
+    if value:
+        path = value
+    if os.path.exists(path):
+        with open(path,&#34;r&#34;) as f:
+            config = json.load(f)
+            logging.config.dictConfig(config)
+    else:
+        logging.basicConfig(level = default_level)
+
+def func():
+    logging.info(&#34;start func&#34;)
+
+    logging.info(&#34;exec func&#34;)
+
+    logging.info(&#34;end func&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    setup_logging(default_path=&#34;logging.json&#34;)
+    func()</pre></td></tr></table>
+</div>
+</div>
+<h2 id="回滚-过期删除">回滚、过期删除</h2>
+
+<p>使用RotatingFileHandler，可以实现日志回滚</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import logging
+from logging.handlers import RotatingFileHandler
+logger = logging.getLogger(__name__)
+logger.setLevel(level = logging.INFO)
+#定义一个RotatingFileHandler，最多备份3个日志文件，每个日志文件最大1K
+rHandler = RotatingFileHandler(&#34;log.txt&#34;,maxBytes = 1*1024,backupCount = 3)
+rHandler.setLevel(logging.INFO)
+formatter = logging.Formatter(&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;)
+rHandler.setFormatter(formatter)
+
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+console.setFormatter(formatter)
+
+logger.addHandler(rHandler)
+logger.addHandler(console)
+
+logger.info(&#34;Start print log&#34;)
+logger.debug(&#34;Do something&#34;)
+logger.warning(&#34;Something maybe fail.&#34;)
+logger.info(&#34;Finish&#34;)
+
+
+# 可以在工程目录中看到，备份的日志文件
+2016/10/09  19:36               732 log.txt
+2016/10/09  19:36               967 log.txt.1
+2016/10/09  19:36               985 log.txt.2
+2016/10/09  19:36               976 log.txt.3</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">.zhujianjun</span>
+  </p>
+  
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://blog.zhujianjun.cn/2018/11/17/logging/" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/logging/">logging</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/10/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">logging介绍</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/3/">
+            <span class="next-text nav-default">logging介绍</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

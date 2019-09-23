@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hashlib on 飘流的河</title>
+    <link>http://cuoh2.github.io/tags/hashlib/</link>
+    <description>Recent content in hashlib on 飘流的河</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Wed, 19 Sep 2018 19:55:16 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuoh2.github.io/tags/hashlib/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hashlib</title>
+      <link>http://cuoh2.github.io/post/hashlib/</link>
+      <pubDate>Wed, 19 Sep 2018 19:55:16 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/hashlib/</guid>
+      <description>介绍 hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为123，abcde的密文为12345.而hash是“摘</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python中list的实现 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="姚钢强" /><meta name="description" content="这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python中list的实现" />
+<meta property="og:description" content="这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
+<meta property="article:published_time" content="2018-07-08T21:33:17+08:00" />
+<meta property="article:modified_time" content="2018-07-08T21:33:17+08:00" />
+<meta itemprop="name" content="Python中list的实现">
+<meta itemprop="description" content="这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程">
+
+
+<meta itemprop="datePublished" content="2018-07-08T21:33:17&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-08T21:33:17&#43;08:00" />
+<meta itemprop="wordCount" content="2247">
+
+
+
+<meta itemprop="keywords" content="python,list," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python中list的实现"/>
+<meta name="twitter:description" content="这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python中list的实现</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-08 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> python </a>
+            </div>
+          <span class="more-meta"> 约 2247 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#list对象的c结构">List对象的C结构</a></li>
+<li><a href="#list的初始化">List的初始化</a></li>
+<li><a href="#append">Append</a></li>
+<li><a href="#insert">Insert</a></li>
+<li><a href="#pop">Pop</a></li>
+<li><a href="#remove">Remove</a></li>
+<li><a href="#译者注">译者注：</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>这篇文章介绍了Python中list是如何实现的。
+在Python中list特别有用。让我们来看下list的内部是如何实现的。
+来看下面简单的程序，在list中添加一些整数并将他们打印出来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;&gt;&gt; L = []
+&gt;&gt;&gt; L.append(1)
+&gt;&gt;&gt; L.append(2)
+&gt;&gt;&gt; L.append(3)
+&gt;&gt;&gt; L
+[1, 2, 3]
+&gt;&gt;&gt; for e in L:
+...   print e
+...
+1
+2
+3</pre></td></tr></table>
+</div>
+</div>
+<p>正如你所看到的，list是可以迭代的。</p>
+
+<h2 id="list对象的c结构">List对象的C结构</h2>
+
+<p>Python中list是用下边的C语言的结构来表示的。<code>ob_item</code>是用来保存元素的指针数组，<code>allocated</code>是<code>ob_item</code>预先分配的内存总容量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">typedef struct {
+    PyObject_VAR_HEAD
+    PyObject **ob_item;
+    Py_ssize_t allocated;
+} PyListObject;</pre></td></tr></table>
+</div>
+</div>
+<h2 id="list的初始化">List的初始化</h2>
+
+<p>让我们来看下当初始化一个空list的时候发生了什么 L = []</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: size of the list = 0
+returns: list object = []
+PyListNew:
+    nbytes = size * size of global Python object = 0
+    allocate new list object
+    allocate list of pointers (ob_item) of size nbytes = 0
+    clear ob_item
+    set list&#39;s allocated var to 0 = 0 slots
+    return list object</pre></td></tr></table>
+</div>
+</div>
+<p>非常重要的是知道list申请内存空间的大小（后文用allocated代替）的大小和list实际存储元素所占空间的大小(<code>ob_size</code>)之间的关系，<code>ob_size</code>的大小和<code>len(L)</code>是一样的，而allocated的大小是在内存中已经申请空间大小。通常你会看到allocated的值要比<code>ob_size</code>的值要大。这是为了避免每次有新元素加入list时都要调用realloc进行内存分配。接下来我们会看到更多关于这些的内容。</p>
+
+<h2 id="append">Append</h2>
+
+<p>我们在list中追加一个整数:L.append(1)。发生了什么？调用了内部的C函数app1()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object, new element
+returns: 0 if OK, -1 if not
+app1:
+    n = size of list
+    call list_resize() to resize the list to size n+1 = 0 + 1 = 1
+    list[n] = list[0] = new element
+    return 0</pre></td></tr></table>
+</div>
+</div>
+<p>来让我们看下<code>list_resize()</code>,<code>list_resize()</code>会申请多余的空间以避免调用多次<code>list_resize()</code>函数，list增长的模型是:0, 4, 8, 16, 25, 35, 46, 58, 72, 88, …</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object, new size
+returns: 0 if OK, -1 if not
+list_resize:
+    new_allocated = (newsize &gt;&gt; 3) + (newsize &lt; 9 ? 3 : 6) = 3
+    new_allocated += newsize = 3 + 1 = 4
+    resize ob_item (list of pointers) to size new_allocated
+    return 0</pre></td></tr></table>
+</div>
+</div>
+<p>开辟了四个内存空间来存放list中的元素，存放的第一个元素是1。你可以从下图中看到L[0]指向了我们刚刚加进去的元素。虚线的框代表了申请了但是还没有使用(存储元素)的内存空间</p>
+
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list.png" alt="Web Picture" title="Web Picture" /></p>
+
+<p>我们继续加入一个元素：L.append(2)。调用list_resize,同时n+1=2。但是因为allocated（译者注：已经申请的空间大小）是4。所以没有必要去申请新的内存空间。相同的事情发生在再次在list中添加两个元素的时候: L.append(3),L.append(4)。下图展示了到目前为止我们做了什么。</p>
+
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list_4.png" alt="Web Picture" title="Web Picture" /></p>
+
+<h2 id="insert">Insert</h2>
+
+<p>现在我们在列表的第一个位置插入一个整数5:L.insert(1, 5),看看内部发生了什么。调用了ins1()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object, where, new element
+returns: 0 if OK, -1 if not
+ins1:
+    resize list to size n+1 = 5 -&gt; 4 more slots will be allocated
+    starting at the last element up to the offset where, right shift each element
+    set new element at offset where
+    return 0</pre></td></tr></table>
+</div>
+</div>
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list_insert.png" alt="Web Picture" title="Web Picture" /></p>
+
+<p>虚线框表示已经申请但是没有使用的内存。申请了8个内存空间但是list实际用来存储元素只使用了其中5个内存空间
+insert的时间复杂度是O(n)</p>
+
+<h2 id="pop">Pop</h2>
+
+<p>当你弹出list的最后一个元素：L.pop()。调用listpop()，<code>list_resize</code>在函数listpop()内部被调用，如果这时<code>ob_size</code>（译者注：弹出元素后）小于allocated（译者注：已经申请的内存空间）的一半。这时申请的内存空间将会缩小。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object
+returns: element popped
+listpop:
+    if list empty:
+        return null
+    resize list with size 5 - 1 = 4. 4 is not less than 8/2 so no shrinkage
+    set list object size to 4
+    return last element</pre></td></tr></table>
+</div>
+</div>
+<p>Pop的时间复杂度是O(1)</p>
+
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list_pop.png" alt="Web Picture" title="Web Picture" /></p>
+
+<p>你可以发现4号内存空间指向还指向那个数值（译者注：弹出去的那个数值），但是很重要的是ob_size现在却成了4.
+让我们再弹出一个元素。在list_resize内部，size – 1 = 4 – 1 = 3 比allocated（已经申请的空间）的一半还要小。所以list的申请空间缩小到
+6个，list的实际使用空间现在是3个(译者注：根据(newsize &gt;&gt; 3) + (newsize &lt; 9 ? 3 : 6) = 3在文章最后有详述)
+你可以发现（下图）3号和4号内存空间还存储着一些整数，但是list的实际使用(存储元素)空间却只有3个了。</p>
+
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list_pop_2.png" alt="Web Picture" title="Web Picture" /></p>
+
+<h2 id="remove">Remove</h2>
+
+<p>Python list对象有一个方法可以移除一个指定的元素。调用listremove()。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object, element to remove
+returns none if OK, null if not
+listremove:
+    loop through each list element:
+    if correct element:
+        slice list between element&#39;s slot and element&#39;s slot + 1
+        return none
+    return null</pre></td></tr></table>
+</div>
+</div>
+<p>切开list和删除元素，调用了<code>list_ass_slice()</code>（译者注：在上文slice list between element&rsquo;s slot and element&rsquo;s slot + 1被调用），来看下<code>list_ass_slice()</code>是如何工作的。在这里，低位为1 高位为2（译者注：传入的参数），我们移除在1号内存空间存储的数据5</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">arguments: list object, low offset, high offset
+returns: 0 if OK
+list_ass_slice:
+    copy integer 5 to recycle list to dereference it
+    shift elements from slot 2 to slot 1
+    resize list to 5 slots
+    return 0</pre></td></tr></table>
+</div>
+</div>
+<p>Remove的时间复杂度为O(n)</p>
+
+<p><img src="https://raw.githubusercontent.com/acmerfight/insight_python/master/images/list_remove.png" alt="Web Picture" title="Web Picture" /></p>
+
+<h2 id="译者注">译者注：</h2>
+
+<p>文中list的sort部分没有进行翻译</p>
+
+<p>核心部分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">我们能看到 Python 设计者的苦心。在需要的时候扩容,但又不允许过度的浪费,适当的内存回收是非常必要的。
+这个确定调整后的空间大小算法很有意思。
+调整后大小 (new_allocated) = 新元素数量 (newsize) + 预留空间 (new_allocated)
+调整后的空间肯定能存储 newsize 个元素。要关注的是预留空间的增长状况。
+将预留算法改成 Python 版就更清楚了:(newsize // 8) + (newsize &lt; 9 and 3 or 6)。
+当 newsize &gt;= allocated,自然按照这个新的长度 &#34;扩容&#34; 内存。
+而如果 newsize &lt; allocated,且利用率低于一半呢?
+allocated    newsize       new_size + new_allocated
+10           4             4 + 3
+20           9             9 + 7
+很显然,这个新长度小于原来的已分配空间长度,自然会导致 realloc 收缩内存。(不容易啊)
+引自《深入Python编程》</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">姚钢强</span>
+  </p>
+  
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://www.jianshu.com/p/J4U6rR" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/list/">list</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">多线程中的线程等待和线程保护</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/">
+            <span class="next-text nav-default">Python遍历列表时删除元素</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

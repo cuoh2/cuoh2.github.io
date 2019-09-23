@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux命令 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Linux Tools Quick Tutorial" /><meta name="description" content="对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="linux命令" />
+<meta property="og:description" content="对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/" />
+<meta property="article:published_time" content="2018-08-19T17:40:19+08:00" />
+<meta property="article:modified_time" content="2018-08-19T17:40:19+08:00" />
+<meta itemprop="name" content="linux命令">
+<meta itemprop="description" content="对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎">
+
+
+<meta itemprop="datePublished" content="2018-08-19T17:40:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-19T17:40:19&#43;08:00" />
+<meta itemprop="wordCount" content="2183">
+
+
+
+<meta itemprop="keywords" content="linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux命令"/>
+<meta name="twitter:description" content="对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">linux命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-19 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> linux </a>
+            </div>
+          <span class="more-meta"> 约 2183 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#文件操作">文件操作</a>
+<ul>
+<li><a href="#目录切换">目录切换</a></li>
+<li><a href="#列出目录项">列出目录项</a></li>
+<li><a href="#查找目录及文件-find-locate">查找目录及文件 find/locate</a></li>
+<li><a href="#查看文件内容">查看文件内容</a></li>
+<li><a href="#查找文件内容">查找文件内容</a></li>
+<li><a href="#文件与目录权限修改">文件与目录权限修改</a></li>
+<li><a href="#管道和重定向">管道和重定向</a></li>
+<li><a href="#设置环境变量">设置环境变量</a></li>
+<li><a href="#bash快捷输入或删除">Bash快捷输入或删除</a></li>
+<li><a href="#综合应用">综合应用</a></li>
+</ul></li>
+<li><a href="#进程管理工具">进程管理工具</a>
+<ul>
+<li><a href="#查询进程">查询进程</a></li>
+<li><a href="#终止进程">终止进程</a></li>
+<li><a href="#进程监控">进程监控</a></li>
+<li><a href="#分析线程栈">分析线程栈</a></li>
+<li><a href="#综合运用">综合运用</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>对linux不是很熟练，还是需要记录下来时常看看以及使用，</p>
+
+<p>下面记录一些常用的基本命令：</p>
+
+<p>包括文件操作、目录操作、进程操作</p>
+
+<h2 id="文件操作">文件操作</h2>
+
+<blockquote>
+<p>文件管理不外乎文件或目录的创建、删除、查询、移动</p>
+</blockquote>
+
+<ul>
+<li>创建：mkdir</li>
+<li>删除：rm</li>
+<li>删除非空目录：rm -rf file目录</li>
+<li>删除日志 rm *log (等价: $find ./ -name “*log” -exec rm {} ;)</li>
+<li>移动：mv</li>
+<li>复制：cp (复制目录：cp -r )</li>
+</ul>
+
+<p>查看当前目录下文件个数:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$find ./ | wc -l</pre></td></tr></table>
+</div>
+</div>
+<p>复制目录:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$cp -r source_dir  dest_dir</pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>文件查询是重点，用find来进行查询；find的参数丰富，也非常强大；</p>
+</blockquote>
+
+<h3 id="目录切换">目录切换</h3>
+
+<ul>
+<li>找到文件/目录位置：cd</li>
+<li>切换到上一个工作目录： cd -</li>
+<li>切换到home目录： cd or cd ~</li>
+<li>显示当前路径: pwd</li>
+<li>更改当前工作路径为path: $cd path</li>
+</ul>
+
+<h3 id="列出目录项">列出目录项</h3>
+
+<ul>
+<li>显示当前目录下的文件 ls</li>
+<li>按时间排序，以列表的方式显示目录项 ls -lrt
+以上这个命令用到的频率如此之高，所以可以为它建立一个快捷命令方式:</li>
+</ul>
+
+<p>在.bashrc 中设置命令别名:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">alias lsl=&#39;ls -lrt&#39;
+alias lm=&#39;ls -al|more&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>这样，使用lsl，就可以显示目录中的文件按照修改时间排序；以列表方式显示；</p>
+
+<ul>
+<li><p>给每项文件前面增加一个id编号(看上去更加整洁):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&gt;ls | cat -n</pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<p>输出：
+1 a 2 a.out 3 app 4 b 5 bin 6 config</p>
+
+<p>注：.bashrc 在/home/用户名/ 文件夹下，以隐藏文件的方式存储；可使用 ls -a 查看；</p>
+
+<h3 id="查找目录及文件-find-locate">查找目录及文件 find/locate</h3>
+
+<p>搜寻文件或目录:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$find ./ -name &#34;core*&#34; | xargs file</pre></td></tr></table>
+</div>
+</div>
+<p>查找目标文件夹中是否有obj文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$find ./ -name &#39;*.o&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>递归当前目录及子目录删除所有.o文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$find ./ -name &#34;*.o&#34; -exec rm {} \;</pre></td></tr></table>
+</div>
+</div>
+<p>find是实时查找，如果需要更快的查询，可使用locate；locate会为文件系统建立索引数据库，如果有文件更新，需要定期执行更新命令来更新索引库:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$locate string</pre></td></tr></table>
+</div>
+</div>
+<p>寻找包含有string的路径:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$updatedb</pre></td></tr></table>
+</div>
+</div>
+<p>与find不同，locate并不是实时查找。需要更新数据库来获得最新的文件索引信息。</p>
+
+<h3 id="查看文件内容">查看文件内容</h3>
+
+<p>查看文件：cat vi head tail more</p>
+
+<p>显示时同时显示行号:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$cat -n</pre></td></tr></table>
+</div>
+</div>
+<p>按页显示列表内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ls -al | more</pre></td></tr></table>
+</div>
+</div>
+<p>只看前10行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$head - 10 **</pre></td></tr></table>
+</div>
+</div>
+<p>显示文件第一行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$head -1 filename</pre></td></tr></table>
+</div>
+</div>
+<p>显示文件倒数第五行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$tail -5 filename</pre></td></tr></table>
+</div>
+</div>
+<p>查看两个文件间的差别:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$diff file1 file2</pre></td></tr></table>
+</div>
+</div>
+<p>动态显示文本最新信息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$tail -f crawler.log</pre></td></tr></table>
+</div>
+</div>
+<h3 id="查找文件内容">查找文件内容</h3>
+
+<p>使用egrep查询文件内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">egrep &#39;03.1\/CO\/AE&#39; TSF_STAT_111130.log.012
+egrep &#39;A_LMCA777:C&#39; TSF_STAT_111130.log.035 &gt; co.out2</pre></td></tr></table>
+</div>
+</div>
+<h3 id="文件与目录权限修改">文件与目录权限修改</h3>
+
+<ul>
+<li>改变文件的拥有者 chown</li>
+<li>改变文件读、写、执行等属性 chmod</li>
+<li>递归子目录修改： chown -R tuxapp source/</li>
+<li>增加脚本可执行权限： chmod a+x myscript</li>
+</ul>
+
+<h3 id="管道和重定向">管道和重定向</h3>
+
+<ul>
+<li>批处理命令连接执行，使用 |</li>
+<li>串联: 使用分号 ;</li>
+<li>前面成功，则执行后面一条，否则，不执行:&amp;&amp;</li>
+
+<li><p>前面失败，则后一条执行: ||</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ls /proc &amp;&amp; echo  suss! || echo failed.</pre></td></tr></table>
+</div>
+</div>
+<p>能够提示命名是否执行成功or失败；</p></li>
+</ul>
+
+<p>与上述相同效果的是:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">if ls /proc; then echo suss; else echo fail; fi</pre></td></tr></table>
+</div>
+</div>
+<p>重定向:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ls  proc/*.c &gt; list 2&gt; &amp;l</pre></td></tr></table>
+</div>
+</div>
+<p>将标准输出和标准错误重定向到同一文件；
+等价的是:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ls  proc/*.c &amp;&gt; list</pre></td></tr></table>
+</div>
+</div>
+<p>清空文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">:&gt; a.txt</pre></td></tr></table>
+</div>
+</div>
+<p>重定向:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">echo aa &gt;&gt; a.txt</pre></td></tr></table>
+</div>
+</div>
+<h3 id="设置环境变量">设置环境变量</h3>
+
+<p>启动帐号后自动执行的是 文件为 <code>.profile</code>，然后通过这个文件可设置自己的环境变量；</p>
+
+<p>安装的软件路径一般需要加入到path中:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">PATH=$APPDIR:/opt/app/soft/bin:$PATH:/usr/local/bin:$TUXDIR/bin:$ORACLE_HOME/bin;export PATH</pre></td></tr></table>
+</div>
+</div>
+<h3 id="bash快捷输入或删除">Bash快捷输入或删除</h3>
+
+<p>快捷键:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Ctl-U   删除光标到行首的所有字符,在某些设置下,删除全行
+Ctl-W   删除当前光标到前边的最近一个空格之间的字符
+Ctl-H   backspace,删除光标前边的字符
+Ctl-R   匹配最相近的一个文件，然后输出</pre></td></tr></table>
+</div>
+</div>
+<h3 id="综合应用">综合应用</h3>
+
+<p>查找record.log中包含AAA，但不包含BBB的记录的总数:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">cat -v record.log | grep AAA | grep -v BBB | wc -l</pre></td></tr></table>
+</div>
+</div>
+<h2 id="进程管理工具">进程管理工具</h2>
+
+<p><code>ps</code> <code>top</code> <code>lsof</code> <code>kill</code> <code>pmap</code></p>
+
+<p>使用进程管理工具，我们可以查询程序当前的运行状态，或终止一个进程；</p>
+
+<p>任何进程都与文件关联；我们会用到lsof工具（list opened files），作用是列举系统中已经被打开的文件。在linux环境中，任何事物都是文件，设备是文件，目录是文件，甚至sockets也是文件。用好lsof命令，对日常的linux管理非常有帮助。</p>
+
+<h3 id="查询进程">查询进程</h3>
+
+<p>查询正在运行的进程信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ps -ef</pre></td></tr></table>
+</div>
+</div>
+<p>eg:查询归属于用户colin115的进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ps -ef | grep colin115
+$ps -lu colin115</pre></td></tr></table>
+</div>
+</div>
+<p>查询进程ID（适合只记得部分进程字段）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$pgrep 查找进程
+
+eg:查询进程名中含有re的进程
+[/home/weber#]pgrep -l re
+2 kthreadd
+28 ecryptfs-kthrea
+29515 redis-server</pre></td></tr></table>
+</div>
+</div>
+<p>以完整的格式显示所有的进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ps -ajx</pre></td></tr></table>
+</div>
+</div>
+<p>显示进程信息，并实时更新</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$top</pre></td></tr></table>
+</div>
+</div>
+<p>查看端口占用的进程状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">lsof -i:3306</pre></td></tr></table>
+</div>
+</div>
+<p>查看用户username的进程所打开的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$lsof -u username</pre></td></tr></table>
+</div>
+</div>
+<p>查询init进程当前打开的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$lsof -c init</pre></td></tr></table>
+</div>
+</div>
+<p>查询指定的进程ID(23295)打开的文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$lsof -p 23295</pre></td></tr></table>
+</div>
+</div>
+<p>查询指定目录下被进程开启的文件（使用+D 递归目录）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$lsof +d mydir1/</pre></td></tr></table>
+</div>
+</div>
+<h3 id="终止进程">终止进程</h3>
+
+<p>杀死指定PID的进程 (PID为Process ID)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$kill PID</pre></td></tr></table>
+</div>
+</div>
+<p>杀死相关进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">kill -9 3434</pre></td></tr></table>
+</div>
+</div>
+<p>杀死job工作 (job为job number)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$kill %job</pre></td></tr></table>
+</div>
+</div>
+<h3 id="进程监控">进程监控</h3>
+
+<p>查看系统中使用CPU、使用内存最多的进程；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$top
+(-&gt;)P</pre></td></tr></table>
+</div>
+</div>
+<p>输入top命令后，进入到交互界面；接着输入字符命令后显示相应的进程状态：</p>
+
+<p>对于进程，平时我们最常想知道的就是哪些进程占用CPU最多，占用内存最多。以下两个命令就可以满足要求:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">P：根据CPU使用百分比大小进行排序。
+M：根据驻留内存大小进行排序。
+i：使top不显示任何闲置或者僵死进程。</pre></td></tr></table>
+</div>
+</div>
+<p>这里介绍最使用的几个选项,对于更详细的使用，详见 top linux下的任务管理器 ;</p>
+
+<h3 id="分析线程栈">分析线程栈</h3>
+
+<p>使用命令pmap，来输出进程内存的状况，可以用来分析线程堆栈；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$pmap PID
+
+eg:
+[/home/weber#]ps -fe| grep redis
+weber    13508 13070  0 08:14 pts/0    00:00:00 grep --color=auto redis
+weber    29515     1  0  2013 ?        02:55:59 ./redis-server redis.conf
+[/home/weber#]pmap 29515
+29515:   ./redis-server redis.conf
+08048000    768K r-x--  /home/weber/soft/redis-2.6.16/src/redis-server
+08108000      4K r----  /home/weber/soft/redis-2.6.16/src/redis-server
+08109000     12K rw---  /home/weber/soft/redis-2.6.16/src/redis-server</pre></td></tr></table>
+</div>
+</div>
+<h3 id="综合运用">综合运用</h3>
+
+<p>将用户colin115下的所有进程名以av_开头的进程终止:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ps -u colin115 |  awk &#39;/av_/ {print &#34;kill -9 &#34; $1}&#39; | sh</pre></td></tr></table>
+</div>
+</div>
+<p>将用户colin115下所有进程名中包含HOST的进程终止:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ps -fe| grep colin115|grep HOST |awk &#39;{print $2}&#39; | xargs kill -9;</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Linux Tools Quick Tutorial</span>
+  </p>
+  
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/base/02_file_manage.html#id25" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/logging/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">logging</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/">
+            <span class="next-text nav-default">多线程中的线程等待和线程保护</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

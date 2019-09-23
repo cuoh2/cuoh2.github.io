@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>利用Python处理json文件 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="cuohoh" /><meta name="description" content="JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/5/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="利用Python处理json文件" />
+<meta property="og:description" content="JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/5/" />
+<meta property="article:published_time" content="2018-06-29T17:40:19+08:00" />
+<meta property="article:modified_time" content="2018-06-29T17:40:19+08:00" />
+<meta itemprop="name" content="利用Python处理json文件">
+<meta itemprop="description" content="JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言">
+
+
+<meta itemprop="datePublished" content="2018-06-29T17:40:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-06-29T17:40:19&#43;08:00" />
+<meta itemprop="wordCount" content="775">
+
+
+
+<meta itemprop="keywords" content="python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="利用Python处理json文件"/>
+<meta name="twitter:description" content="JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">利用Python处理json文件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-29 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> python </a>
+            </div>
+          <span class="more-meta"> 约 775 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#读取json文件">读取json文件</a></li>
+<li><a href="#编码为json格式">编码为json格式</a></li>
+<li><a href="#共有参数">共有参数</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言的文本格式。
+在Python中，我们使用json包来实现json文件的读取和写入。</p>
+
+<h2 id="读取json文件">读取json文件</h2>
+
+<p>使用<code>json.loads()</code>或<code>json.load()</code>两个函数来读取json文件。</p>
+
+<p>json.loads()用来解析包含JSON数据的字符串，解析后变量格式为字典。注意，是字典类型的字符串，否则报错。
+用法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">import json
+strDic = &#39;{&#34;name&#34;:&#34;Lihua&#34;,&#34;ages&#34;:18,&#34;weigth&#34;:140,&#34;heigth&#34;:170}&#39;
+str = json.loads(strDic)
+print(str)</pre></td></tr></table>
+</div>
+</div>
+<p>输出为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{&#39;name&#39;: &#39;Lihua&#39;, &#39;ages&#39;: 18, &#39;weigth&#39;: 140, &#39;heigth&#39;: 170}</pre></td></tr></table>
+</div>
+</div>
+<p>json.load()用来解析json文件，这也是和json.loads()唯一的区别。
+解析json文件时，要么该文件只包含一行（只有一个字典），要么每个字典是列表的一个元素。</p>
+
+<h2 id="编码为json格式">编码为json格式</h2>
+
+<p>使用<code>json.dumps()</code>或<code>json.dump()</code>两个函数来编码json格式。
+json.dumps()将一个Python数据结构（字典）编码成json格式的字符串。
+用法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">dic =json.dumps(str)
+#此时的str经过上述代码已经转变为字典类型了，现在再将它转回去
+print(dic)</pre></td></tr></table>
+</div>
+</div>
+<p>输出为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&#39;{&#34;name&#34;: &#34;Lihua&#34;, &#34;ages&#34;: 18, &#34;weigth&#34;: 140, &#34;heigth&#34;: 170}&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>json.dump()将一个Python数据结构（字典）编码成json格式，并写入到文件中。</p>
+
+<h2 id="共有参数">共有参数</h2>
+
+<ul>
+<li><code>ensure_ascii=True</code>：如果有中文时，需改为False，即不转义为ASCII码；</li>
+<li><code>indent=None</code>：缩进。默认为紧凑格式，0/负数或者&rdquo;&ldquo;为只换行，正数代表缩进多少个空格，也可以使用&rdquo;\t&rdquo;等；</li>
+<li><code>sort_keys=False</code>：是否按照键排序；</li>
+<li><code>separators=None</code>：分隔符。默认为None（即(&ldquo;, &ldquo;, &ldquo;: &ldquo;)），可以改为紧凑形式(&rdquo;,&ldquo;, &ldquo;:&ldquo;)等。</li>
+</ul>
+
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">cuohoh</span>
+  </p>
+  
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://docs.python.org/3/library/json.html" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python 开发简单的 web API</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

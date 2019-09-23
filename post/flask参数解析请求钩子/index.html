@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Flask参数解析、请求钩子 - 飘流的河</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="陈小跑" /><meta name="description" content="参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Flask参数解析、请求钩子" />
+<meta property="og:description" content="参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/" />
+<meta property="article:published_time" content="2018-11-28T17:40:19+08:00" />
+<meta property="article:modified_time" content="2018-11-28T17:40:19+08:00" />
+<meta itemprop="name" content="Flask参数解析、请求钩子">
+<meta itemprop="description" content="参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla">
+
+
+<meta itemprop="datePublished" content="2018-11-28T17:40:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-11-28T17:40:19&#43;08:00" />
+<meta itemprop="wordCount" content="1399">
+
+
+
+<meta itemprop="keywords" content="python,flask,requests," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flask参数解析、请求钩子"/>
+<meta name="twitter:description" content="参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Hugo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Hugo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Flask参数解析、请求钩子</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-28 </span>
+        <div class="post-category">
+            <a href="/categories/flask/"> flask </a>
+            </div>
+          <span class="more-meta"> 约 1399 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#参数解析">参数解析</a>
+<ul>
+<li><a href="#get方法">GET方法：</a></li>
+<li><a href="#post-put-detelte方法">POST、PUT、DETELTE方法：</a>
+<ul>
+<li><a href="#form-data型-login">form-data型：/login</a></li>
+<li><a href="#json型-login">json型：/login</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#钩子函数">钩子函数</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h2 id="参数解析">参数解析</h2>
+
+<p>Flask的参数解析主要用Request完成<code>(from flask import request)</code>。</p>
+
+<p>request的Api详解见官方文档<a href="http://flask.pocoo.org/docs/1.0/api/#flask.Request。">http://flask.pocoo.org/docs/1.0/api/#flask.Request。</a></p>
+
+<p>request的使用详解见官方文档<a href="http://flask.pocoo.org/docs/1.0/reqcontext/。">http://flask.pocoo.org/docs/1.0/reqcontext/。</a></p>
+
+<p>此处主要介绍一些常用的参数解析相关的内容。</p>
+
+<p>request中的几个重要变量：</p>
+
+<ul>
+<li><p><code>request.data</code> 字符串类型 存放请求的字符串数据，未经处理</p></li>
+
+<li><p><code>request.files MultiDict</code>类型 存放所有的上传文件列表</p></li>
+
+<li><p><code>request.form ImmutableMultiDict</code>类型 存放表单数据</p></li>
+
+<li><p><code>request.is_json</code> 函数 判断数据是否为json数据</p></li>
+
+<li><p><code>request.is_multiprocess</code> 函数 判断此应用是否为多进程WSGI服务</p></li>
+
+<li><p><code>request.is_multithread</code> 函数 判断此应用是否为多线程WSGI服务</p></li>
+
+<li><p><code>request.json</code> Dict类型 存放json类型的数据</p></li>
+
+<li><p><code>request.view_args</code> Dict类型 存放URL中定义的变量 比如/login/<string: username>，会存放{&ldquo;username&rdquo;: &ldquo;xxx&rdquo;}</p></li>
+
+<li><p><code>request.args</code> ImmutableMultiDict类型 存放URL中?后面的变量</p></li>
+
+<li><p><code>request.values</code> CombinedMultiDict类型 是args和form的组合</p></li>
+</ul>
+
+<p>拿常用的GET、POST、PUT、DELETE方法举例。</p>
+
+<h3 id="get方法">GET方法：</h3>
+
+<p>变量名不重复型：/login?username=cxp&amp;password=cxp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">username = request.args.get(&#39;username&#39;, &#39;&#39;)
+password = request.args.get(&#39;password&#39;, &#39;&#39;)</pre></td></tr></table>
+</div>
+</div>
+<p>变量名重复型：/login?username=cxp&amp;password=cxp&amp;password=cpp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">params = dict()
+for i, j in request.args.iterlists():
+    params[i] = j
+print params # {&#39;username&#39;: [u&#39;cxp&#39;], &#39;password&#39;: [u&#39;cxp&#39;, u&#39;cpp&#39;]}</pre></td></tr></table>
+</div>
+</div>
+<p>request.data/request.form/request.json无数据，request.args和request.values存放数据。</p>
+
+<h3 id="post-put-detelte方法">POST、PUT、DETELTE方法：</h3>
+
+<h4 id="form-data型-login">form-data型：/login</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">username = request.form.get(&#39;username&#39;, &#39;&#39;)
+password = request.form.get(&#39;password&#39;, &#39;&#39;)</pre></td></tr></table>
+</div>
+</div>
+<p>request.data/request.args/request.json都为空，仅request.form和request.values有数据。</p>
+
+<h4 id="json型-login">json型：/login</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">args = request.json
+或者
+args = request.get_json()</pre></td></tr></table>
+</div>
+</div>
+<p>request.args/request.form/request.values为空，request.data为裸数据，request.json有字典数据。</p>
+
+<p>其实准确的说不应该用HTTP方法来做分类。如果是URL中直接带参数的方式，接口中都可以用request.args变量去获取参数。如果是form-data的类型，则可以用request.form变量去获取参数。如果是json类型，则用request.json去获取参数。另外因为Flask可能会用wtforms来做表单验证，建议接口中的key为固定值而非变量，否则做表单验证时会比较不方便。</p>
+
+<h2 id="钩子函数">钩子函数</h2>
+
+<p><code>before_request()</code> 注册一个函数，在每个请求之前执行。通常用于数据库的连接或者从session中获取信息等操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@app.before_request
+def bf_request():
+    g.string = &#39;before_request&#39;</pre></td></tr></table>
+</div>
+</div>
+<p><code>before_first_request()</code> 注册一个函数，在处理第一个请求之前运行。通用用于仅需执行一次的操作，而且需要第一次请求来触发。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@app.before_first_request
+def bf_first_request():
+    g.string = &#39;before_first_request&#39;</pre></td></tr></table>
+</div>
+</div>
+<p><code>after_request()</code>  注册一个函数，在每次请求之后运行。注册的函数至少需要含有一个参数，这个参数实际上为服务器的响应，且函数中需要返回这个响应参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@app.after_request
+def af_request(param):
+    return param</pre></td></tr></table>
+</div>
+</div>
+<p><code>teardown_request()</code>    注册一个函数，同样在每次请求之后运行。注册的函数至少需要含有一个参数，这个参数实际上为服务器的响应,且函数中需要返回这个响应参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@app.teardown_request
+def td_request(param):
+    return param</pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">陈小跑</span>
+  </p>
+  
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://www.cnblogs.com/chenxianpao/p/9949279.html " target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/flask/">flask</a>
+          <a href="/tags/requests/">requests</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/http1.0%E5%92%8Chttp1.1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">HTTP 1.1和HTTP 1.0</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/">
+            <span class="next-text nav-default">PIL 图像处理库</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cuoh2/cuoh2.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuwenjing1015@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cuoh2" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://space.bilibili.com/388206102" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://cuoh2.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">cuohoh</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
