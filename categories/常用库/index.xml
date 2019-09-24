@@ -6,7 +6,7 @@
     <description>Recent content in 常用库 on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 18 Oct 2018 23:50:33 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jul 2019 23:50:33 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/categories/%E5%B8%B8%E7%94%A8%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>PIL 图像处理库</title>
       <link>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</link>
-      <pubDate>Thu, 18 Oct 2018 23:50:33 +0800</pubDate>
+      <pubDate>Tue, 09 Jul 2019 23:50:33 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</guid>
       <description>open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);</description>
@@ -23,10 +23,28 @@
     <item>
       <title>os模块常用方法</title>
       <link>http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Fri, 21 Sep 2018 20:45:19 +0800</pubDate>
+      <pubDate>Tue, 09 Jul 2019 20:45:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
       <description>os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在</description>
+    </item>
+    
+    <item>
+      <title>logging</title>
+      <link>http://cuoh2.github.io/post/logging/</link>
+      <pubDate>Mon, 08 Jul 2019 21:42:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/logging/</guid>
+      <description>*标准库+第三方库=Python计算生态；库Library、包Package、模板Module，统称模块。 logging模块是Python内</description>
+    </item>
+    
+    <item>
+      <title>hashlib</title>
+      <link>http://cuoh2.github.io/post/hashlib/</link>
+      <pubDate>Mon, 08 Jul 2019 19:55:16 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/hashlib/</guid>
+      <description>介绍 hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为123，abcde的密文为12345.而hash是“摘</description>
     </item>
     
     <item>
@@ -36,24 +54,6 @@
       
       <guid>http://cuoh2.github.io/post/random%E5%BA%93/</guid>
       <description>Python 的 random 库实现了各种分布的伪随机数生成。 整数 random.randrange(start, stop=None, step=1)：从 range(start, stop, step) 返回一个随机选择的元素。stop 与 step 可以缺省，stop 缺省时返回 range(start) 中的</description>
-    </item>
-    
-    <item>
-      <title>hashlib</title>
-      <link>http://cuoh2.github.io/post/hashlib/</link>
-      <pubDate>Wed, 19 Sep 2018 19:55:16 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/hashlib/</guid>
-      <description>介绍 hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为123，abcde的密文为12345.而hash是“摘</description>
-    </item>
-    
-    <item>
-      <title>logging</title>
-      <link>http://cuoh2.github.io/post/logging/</link>
-      <pubDate>Wed, 22 Aug 2018 21:42:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/logging/</guid>
-      <description>*标准库+第三方库=Python计算生态；库Library、包Package、模板Module，统称模块。 logging模块是Python内</description>
     </item>
     
   </channel>

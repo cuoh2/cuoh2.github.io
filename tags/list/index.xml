@@ -6,7 +6,7 @@
     <description>Recent content in list on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sun, 08 Jul 2018 21:33:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2019 21:33:17 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/tags/list/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Python中list的实现</title>
       <link>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
-      <pubDate>Sun, 08 Jul 2018 21:33:17 +0800</pubDate>
+      <pubDate>Mon, 08 Jul 2019 21:33:17 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
       <description>这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程</description>
@@ -23,7 +23,7 @@
     <item>
       <title>Python遍历列表时删除元素</title>
       <link>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</link>
-      <pubDate>Sun, 08 Jul 2018 20:24:16 +0800</pubDate>
+      <pubDate>Mon, 08 Jul 2019 20:24:16 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</guid>
       <description>Python的for循环可以遍历一个列表，但若需要同时将符合条件的元素删除时，则会出错。 出错 1 2 3 4 5 6 s = [1, 2, 3, 4, 1, 1] s1 = s for i in s1: if i ==</description>

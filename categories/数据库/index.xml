@@ -6,15 +6,15 @@
     <description>Recent content in 数据库 on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 23 Jan 2019 21:35:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 21:35:12 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Redis</title>
+      <title>Redis详解</title>
       <link>http://cuoh2.github.io/post/redis/</link>
-      <pubDate>Wed, 23 Jan 2019 21:35:12 +0800</pubDate>
+      <pubDate>Fri, 23 Aug 2019 21:35:12 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/redis/</guid>
       <description>Redis是什么？ 1、是一个完全开源免费的key-value内存数据库; 2、通常被认为是一个数据结构服务器，主要是因为其有着丰富的数据结构 s</description>

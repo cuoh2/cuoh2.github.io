@@ -6,7 +6,7 @@
     <description>Recent content in PIL on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 18 Oct 2018 23:50:33 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jul 2019 23:50:33 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/tags/pil/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>PIL 图像处理库</title>
       <link>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</link>
-      <pubDate>Thu, 18 Oct 2018 23:50:33 +0800</pubDate>
+      <pubDate>Tue, 09 Jul 2019 23:50:33 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</guid>
       <description>open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);</description>

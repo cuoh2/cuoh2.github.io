@@ -6,15 +6,15 @@
     <description>Recent content in Posts on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 23 Jan 2019 21:35:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 21:35:12 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Redis</title>
+      <title>Redis详解</title>
       <link>http://cuoh2.github.io/post/redis/</link>
-      <pubDate>Wed, 23 Jan 2019 21:35:12 +0800</pubDate>
+      <pubDate>Fri, 23 Aug 2019 21:35:12 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/redis/</guid>
       <description>Redis是什么？ 1、是一个完全开源免费的key-value内存数据库; 2、通常被认为是一个数据结构服务器，主要是因为其有着丰富的数据结构 s</description>
@@ -23,7 +23,7 @@
     <item>
       <title>单元测试</title>
       <link>http://cuoh2.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Tue, 04 Dec 2018 17:40:19 +0800</pubDate>
+      <pubDate>Wed, 24 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
       <description>flask应用网站写完，功能基本完成，接下来就是开始学习怎么进行测试了。测试是为了保证代码的健壮性，修复以及完善。这里是创建了一个测试框架用</description>
@@ -32,34 +32,34 @@
     <item>
       <title>模型对象的序列化</title>
       <link>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link>
-      <pubDate>Mon, 03 Dec 2018 17:40:19 +0800</pubDate>
+      <pubDate>Tue, 23 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
       <description>1.在视图函数中，读取出模型之后，需要把他的属性读出来，转换成一个字典，最好的方式是能直接jsonfiy(user)，但是jsonfiy并不</description>
     </item>
     
     <item>
-      <title>Python 开发简单的 web API</title>
-      <link>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</link>
-      <pubDate>Wed, 28 Nov 2018 20:30:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</guid>
-      <description>Flask 是一个简单的 Python web 框架，使用它只用几行代码就可以实现一个小型 Python web 服务。 记录一下它的用法。 一个简单的小例子 1 2 3 4 5 6 7 8 9 10 from flask import Flask app = Flask(__name__) def</description>
-    </item>
-    
-    <item>
       <title>HTTP 1.1和HTTP 1.0</title>
       <link>http://cuoh2.github.io/post/http1.0%E5%92%8Chttp1.1/</link>
-      <pubDate>Wed, 28 Nov 2018 18:55:19 +0800</pubDate>
+      <pubDate>Mon, 22 Jul 2019 18:55:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/http1.0%E5%92%8Chttp1.1/</guid>
       <description>HTTP 1.1和HTTP 1.0的区别 HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处</description>
     </item>
     
     <item>
+      <title>Python 开发简单的 web API</title>
+      <link>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</link>
+      <pubDate>Sun, 21 Jul 2019 20:30:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</guid>
+      <description>Flask 是一个简单的 Python web 框架，使用它只用几行代码就可以实现一个小型 Python web 服务。 记录一下它的用法。 一个简单的小例子 1 2 3 4 5 6 7 8 9 10 from flask import Flask app = Flask(__name__) def</description>
+    </item>
+    
+    <item>
       <title>Flask参数解析、请求钩子</title>
       <link>http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/</link>
-      <pubDate>Wed, 28 Nov 2018 17:40:19 +0800</pubDate>
+      <pubDate>Sun, 21 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/</guid>
       <description>参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla</description>
@@ -68,7 +68,7 @@
     <item>
       <title>PIL 图像处理库</title>
       <link>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</link>
-      <pubDate>Thu, 18 Oct 2018 23:50:33 +0800</pubDate>
+      <pubDate>Tue, 09 Jul 2019 23:50:33 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/pil-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93/</guid>
       <description>open(filename,mode) Image.open返回一个Image对象，该对象有size,format,mode等属性，其中size表示图像的宽度和高度(像素表示);</description>
@@ -77,10 +77,73 @@
     <item>
       <title>os模块常用方法</title>
       <link>http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Fri, 21 Sep 2018 20:45:19 +0800</pubDate>
+      <pubDate>Tue, 09 Jul 2019 20:45:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/os%E6%A8%A1%E5%9D%97%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
       <description>os.path.join()：连接两个或更多的路径名组件 如果各组件名首字母不包含’/’，则函数会自动加上； 如果有一个组件是一个绝对路径，则在</description>
+    </item>
+    
+    <item>
+      <title>logging</title>
+      <link>http://cuoh2.github.io/post/logging/</link>
+      <pubDate>Mon, 08 Jul 2019 21:42:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/logging/</guid>
+      <description>*标准库+第三方库=Python计算生态；库Library、包Package、模板Module，统称模块。 logging模块是Python内</description>
+    </item>
+    
+    <item>
+      <title>Python中list的实现</title>
+      <link>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 08 Jul 2019 21:33:17 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description>这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程</description>
+    </item>
+    
+    <item>
+      <title>Python遍历列表时删除元素</title>
+      <link>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</link>
+      <pubDate>Mon, 08 Jul 2019 20:24:16 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</guid>
+      <description>Python的for循环可以遍历一个列表，但若需要同时将符合条件的元素删除时，则会出错。 出错 1 2 3 4 5 6 s = [1, 2, 3, 4, 1, 1] s1 = s for i in s1: if i ==</description>
+    </item>
+    
+    <item>
+      <title>hashlib</title>
+      <link>http://cuoh2.github.io/post/hashlib/</link>
+      <pubDate>Mon, 08 Jul 2019 19:55:16 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/hashlib/</guid>
+      <description>介绍 hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为123，abcde的密文为12345.而hash是“摘</description>
+    </item>
+    
+    <item>
+      <title>linux命令</title>
+      <link>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Mon, 08 Jul 2019 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid>
+      <description>对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎</description>
+    </item>
+    
+    <item>
+      <title>利用Python处理json文件</title>
+      <link>http://cuoh2.github.io/post/%E5%88%A9%E7%94%A8python%E5%A4%84%E7%90%86json%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 08 Jul 2019 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/%E5%88%A9%E7%94%A8python%E5%A4%84%E7%90%86json%E6%96%87%E4%BB%B6/</guid>
+      <description>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言</description>
+    </item>
+    
+    <item>
+      <title>多线程中的线程等待和线程保护</title>
+      <link>http://cuoh2.github.io/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/</link>
+      <pubDate>Mon, 08 Jul 2019 17:40:19 +0800</pubDate>
+      
+      <guid>http://cuoh2.github.io/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/</guid>
+      <description>Python多线程编程时经常会用到join()和setDaemon()方法，基本用法如下： join([time]): 等待至线程中止。这阻塞调用线程直至线程的join</description>
     </item>
     
     <item>
@@ -90,69 +153,6 @@
       
       <guid>http://cuoh2.github.io/post/random%E5%BA%93/</guid>
       <description>Python 的 random 库实现了各种分布的伪随机数生成。 整数 random.randrange(start, stop=None, step=1)：从 range(start, stop, step) 返回一个随机选择的元素。stop 与 step 可以缺省，stop 缺省时返回 range(start) 中的</description>
-    </item>
-    
-    <item>
-      <title>hashlib</title>
-      <link>http://cuoh2.github.io/post/hashlib/</link>
-      <pubDate>Wed, 19 Sep 2018 19:55:16 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/hashlib/</guid>
-      <description>介绍 hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为123，abcde的密文为12345.而hash是“摘</description>
-    </item>
-    
-    <item>
-      <title>logging</title>
-      <link>http://cuoh2.github.io/post/logging/</link>
-      <pubDate>Wed, 22 Aug 2018 21:42:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/logging/</guid>
-      <description>*标准库+第三方库=Python计算生态；库Library、包Package、模板Module，统称模块。 logging模块是Python内</description>
-    </item>
-    
-    <item>
-      <title>linux命令</title>
-      <link>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Sun, 19 Aug 2018 17:40:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid>
-      <description>对linux不是很熟练，还是需要记录下来时常看看以及使用， 下面记录一些常用的基本命令： 包括文件操作、目录操作、进程操作 文件操作 文件管理不外乎</description>
-    </item>
-    
-    <item>
-      <title>多线程中的线程等待和线程保护</title>
-      <link>http://cuoh2.github.io/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/</link>
-      <pubDate>Sun, 29 Jul 2018 17:40:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%AD%89%E5%BE%85%E5%92%8C%E7%BA%BF%E7%A8%8B%E4%BF%9D%E6%8A%A4/</guid>
-      <description>Python多线程编程时经常会用到join()和setDaemon()方法，基本用法如下： join([time]): 等待至线程中止。这阻塞调用线程直至线程的join</description>
-    </item>
-    
-    <item>
-      <title>Python中list的实现</title>
-      <link>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
-      <pubDate>Sun, 08 Jul 2018 21:33:17 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/python%E4%B8%ADlist%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
-      <description>这篇文章介绍了Python中list是如何实现的。 在Python中list特别有用。让我们来看下list的内部是如何实现的。 来看下面简单的程</description>
-    </item>
-    
-    <item>
-      <title>Python遍历列表时删除元素</title>
-      <link>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</link>
-      <pubDate>Sun, 08 Jul 2018 20:24:16 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/python%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E6%97%B6%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0/</guid>
-      <description>Python的for循环可以遍历一个列表，但若需要同时将符合条件的元素删除时，则会出错。 出错 1 2 3 4 5 6 s = [1, 2, 3, 4, 1, 1] s1 = s for i in s1: if i ==</description>
-    </item>
-    
-    <item>
-      <title>利用Python处理json文件</title>
-      <link>http://cuoh2.github.io/post/%E5%88%A9%E7%94%A8python%E5%A4%84%E7%90%86json%E6%96%87%E4%BB%B6/</link>
-      <pubDate>Sun, 08 Jul 2018 17:40:19 +0800</pubDate>
-      
-      <guid>http://cuoh2.github.io/post/%E5%88%A9%E7%94%A8python%E5%A4%84%E7%90%86json%E6%96%87%E4%BB%B6/</guid>
-      <description>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，尽管JSON是JavaScript的一个子集，但它是独立于语言</description>
     </item>
     
   </channel>

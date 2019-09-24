@@ -6,7 +6,7 @@
     <description>Recent content in flask on 飘流的河</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Tue, 04 Dec 2018 17:40:19 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 17:40:19 +0800</lastBuildDate>
     
 	<atom:link href="http://cuoh2.github.io/categories/flask/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>单元测试</title>
       <link>http://cuoh2.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Tue, 04 Dec 2018 17:40:19 +0800</pubDate>
+      <pubDate>Wed, 24 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
       <description>flask应用网站写完，功能基本完成，接下来就是开始学习怎么进行测试了。测试是为了保证代码的健壮性，修复以及完善。这里是创建了一个测试框架用</description>
@@ -23,7 +23,7 @@
     <item>
       <title>模型对象的序列化</title>
       <link>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link>
-      <pubDate>Mon, 03 Dec 2018 17:40:19 +0800</pubDate>
+      <pubDate>Tue, 23 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
       <description>1.在视图函数中，读取出模型之后，需要把他的属性读出来，转换成一个字典，最好的方式是能直接jsonfiy(user)，但是jsonfiy并不</description>
@@ -32,7 +32,7 @@
     <item>
       <title>Python 开发简单的 web API</title>
       <link>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</link>
-      <pubDate>Wed, 28 Nov 2018 20:30:19 +0800</pubDate>
+      <pubDate>Sun, 21 Jul 2019 20:30:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/python-%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95%E7%9A%84-web-api/</guid>
       <description>Flask 是一个简单的 Python web 框架，使用它只用几行代码就可以实现一个小型 Python web 服务。 记录一下它的用法。 一个简单的小例子 1 2 3 4 5 6 7 8 9 10 from flask import Flask app = Flask(__name__) def</description>
@@ -41,7 +41,7 @@
     <item>
       <title>Flask参数解析、请求钩子</title>
       <link>http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/</link>
-      <pubDate>Wed, 28 Nov 2018 17:40:19 +0800</pubDate>
+      <pubDate>Sun, 21 Jul 2019 17:40:19 +0800</pubDate>
       
       <guid>http://cuoh2.github.io/post/flask%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E9%92%A9%E5%AD%90/</guid>
       <description>参数解析 Flask的参数解析主要用Request完成(from flask import request)。 request的Api详解见官方文档http://fla</description>
